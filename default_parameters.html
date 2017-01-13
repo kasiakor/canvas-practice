@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Canvas practice</title>
+		<style>
+			#myCanvas {
+				background: linear-gradient(blue, white);
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="600px" height="400px">
+			Ups.... your browser doesnt support canvas
+		</canvas>
+	</body>
+		<script>
+			_KKS = {
+				draw: function(left, top, width, height, stroke, fill) {
+					var canvas = document.getElementById("myCanvas");
+
+					if(canvas.getContext) {
+						var context = canvas.getContext("2d");
+						if(typeof fill ==="undefined")
+							fill = "purple";
+						if(typeof stroke ==="undefined")
+							stroke = "white";
+
+						context.strokeStyle = stroke;
+						context.fillStyle = fill;
+						context.fillRect(left, top, width, height);
+						context.strokeRect(left, top, width, height);
+					}
+				}
+			}
+
+			//Legacy code
+			_KKS.draw(20, 20, 100, 100)
+			//Latest code
+			_KKS.draw(200, 120, 150, 150, "red");
+			_KKS.draw(100, 60, 15, 15, "black", "green");
+		</script>
+	</html>
+	
