@@ -20,7 +20,8 @@
 						options = {};
 
 					if(canvas.getContext) {
-						if(typeof left !== undefined) 
+						var context = canvas.getContext("2d");
+						if(typeof left !== "undefined") 
 							if(typeof left === "object")
 								options = left;
 						else 
