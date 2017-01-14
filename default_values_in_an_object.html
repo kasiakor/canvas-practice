@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<title>Canvas practice</title>
+		<style>
+			#myCanvas {
+				background: linear-gradient(blue, white);
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="myCanvas" width="600px" height="400px">
+			Ups.... your browser doesnt support canvas
+		</canvas>
+	</body>
+		<script>
+			_KKS = {
+				draw: function(left, top, width, height, stroke, fill) {
+					var canvas = document.getElementById("myCanvas");
+						options = {};
+
+					if(canvas.getContext) {
+						var context = canvas.getContext("2d");
+						if(typeof left !== "undefined") 
+							if(typeof left === "object")
+								options = left;
+						else 
+							options = {
+								left: left,
+								top: top,
+								width: width,
+								height: height,
+								stroke: stroke,
+								fill: fill
+							};
+					//Add clear property
+						if(options.clear)
+							canvas.width = canvas.width;
+
+					//Add drawOptions object
+					options.left = options.left || _KKS.drawOptions.left;
+					options.top = options.top || _KKS.drawOptions.top;
+					options.width = options.width || _KKS.drawOptions.width;
+					options.height = options.height || _KKS.drawOptions.height;
+					options.stroke = options.stroke || _KKS.drawOptions.stroke;
+					options.fill = options.fill || _KKS.drawOptions.fill;
+
+						context.strokeStyle = options.stroke;
+						context.fillStyle = options.fill;
+						context.fillRect(options.left, options.top, options.width, options.height);
+						context.strokeRect(options.left, options.top, options.width, options.height);
+					}
+				},
+
+				drawOptions: {
+					left: 100,
+					top: 100,
+					width: 45,
+					height: 45,
+					stroke: "amarant",
+					fill: "sienna",
+					clear: false
+				}
+			}
+
+			//Legacy code
+			_KKS.drawOptions.fill = "red";
+			_KKS.draw(20, 20, 100, 100);
+			_KKS.draw(200, 120, 150, 150, "red");
+			_KKS.draw(100, 60, 15, 15, "black", "green");
+			_KKS.draw(undefined, undefined, undefined, undefined, undefined, "orange");
+			_KKS.draw({stroke:"white", fill:"pink", left:30});
+			//Latest code
+			
+			//_KKS.draw({clear: true});
+			_KKS.draw(170, 80);
+		</script>
+	</html>
+	
